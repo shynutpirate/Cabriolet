@@ -61,13 +61,12 @@ public class DriverLoginController extends HttpServlet {
 			Statement statement = connection.createStatement();
 
 			ResultSet resultSet = statement.executeQuery("select * from driver where emailId = '"+emailId+"'");
-            //request.setAttribute("emailId",emailId);
-            //out.println(request.getAttribute("phoneNumber"));
 		
 		 	if(resultSet.next()) {
            
 			session.setAttribute("name",resultSet.getString(1) + resultSet.getString(2));
             session.setAttribute("email", resultSet.getString(3));
+            
 			session.setAttribute("phonenumber", resultSet.getString(4));
 
 			session.setAttribute("gender", resultSet.getString(5));
@@ -84,14 +83,14 @@ public class DriverLoginController extends HttpServlet {
 	}		
 		  if(login.validateCredentials(emailId,password)) {
 			//.getAttribute("UserName",login.getLastName() +""+ login.getFirstName());
-			  session.setAttribute("emailId", emailId);			
+			//  session.setAttribute("emailId", emailId);			
 			RequestDispatcher rd = request.getRequestDispatcher("/DriverOnline.html");
 			rd.forward(request, response);  
 			
 		} else {
 			out.print("Invalid Credentials");
-			RequestDispatcher rd = request.getRequestDispatcher("/WelcomePage.html");
-			rd.forward(request, response);  
+			//RequestDispatcher rd = request.getRequestDispatcher("/WelcomePage.html");
+			//rd.forward(request, response);  
 			
 		}
 		
